@@ -1,0 +1,597 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package carve.gui;
+
+import carve.HighlightGUI;
+import burp.Highlighter;
+import carve.Rule;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import javax.swing.JPanel;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.JComboBox;
+
+/**
+ *
+ * @author asuarez
+ */
+public class RuleJPanel extends javax.swing.JPanel
+{
+
+    HighlightGUI gui;
+
+    private Rule my_rule;
+
+    /**
+     * Creates new form RuleJPanel
+     *
+     * @param name
+     * @param pGUI
+     */
+    public RuleJPanel(Rule pRule, HighlightGUI pGUI)
+    {
+        initComponents();
+        my_rule = pRule;
+
+        ruleNameTXT.setText(my_rule.getName());
+        ruleRegexTB.setText(my_rule.getRegex());
+
+        inScopeCB.setSelected(my_rule.getInScope());
+        caseSensitiveCB.setSelected(my_rule.getCaseSensitivity());
+        isRegexCB.setSelected(my_rule.getMatchType().equals("Regex"));
+        negativeSearchCB.setSelected(my_rule.isNegativeSearch());
+        ruleActive.setSelected(my_rule.isActive());
+
+        //Initialize actions cb
+        for (String action : Highlighter.arrayActions)
+        {
+            actionCB.addItem(action);
+        }
+
+        //Initialize color cb
+        for (String color : Highlighter.arrayColorStrings)
+        {
+            ruleColorCB.addItem(color);
+        }
+
+        //Initialize target cb
+        for (String target : Highlighter.arrayTargets)
+        {
+            targetCB.addItem(target);
+        }
+
+        ruleColorCB.setSelectedItem(my_rule.getColor());
+        targetCB.setSelectedItem(my_rule.getMatchTarget());
+        actionCB.setSelectedItem(my_rule.getAction());
+
+        gui = pGUI;
+
+        // Add some sanity checks here to make sense of Burp extender API methods
+        switch (targetCB.getSelectedItem().toString())
+        {
+            case "Request":
+                sectionCB.removeAllItems();
+                sectionCB.addItem("Method");
+                sectionCB.addItem("URL");
+                sectionCB.addItem("Header");
+                sectionCB.addItem("Body");
+                sectionCB.addItem("Any");
+                break;
+
+            case "Response":
+                sectionCB.removeAllItems();
+                sectionCB.addItem("Cookies");
+                sectionCB.addItem("Header");
+                sectionCB.addItem("Body");
+                sectionCB.addItem("Mime");
+                sectionCB.addItem("StatusCode");
+                sectionCB.addItem("Any");
+                break;
+
+            case "Both":
+                sectionCB.removeAllItems();
+                sectionCB.addItem("Header");
+                sectionCB.addItem("Body");
+                sectionCB.addItem("Any");
+                break;
+        }
+
+        sectionCB.setSelectedItem(my_rule.getMatchSection());
+
+        // Listen for changes in ruleRegexTB
+        ruleRegexTB.getDocument().addDocumentListener(new DocumentListener()
+        {
+            public void changedUpdate(DocumentEvent e)
+            {
+                updateRegex();
+            }
+
+            public void removeUpdate(DocumentEvent e)
+            {
+                updateRegex();
+            }
+
+            public void insertUpdate(DocumentEvent e)
+            {
+                updateRegex();
+            }
+
+            public void updateRegex()
+            {
+                ruleActive.setSelected(false);
+                my_rule.setRegex(ruleRegexTB.getText());
+            }
+        });
+
+        // Listen for changes in ruleNameTXT
+        ruleNameTXT.getDocument().addDocumentListener(new DocumentListener()
+        {
+            public void changedUpdate(DocumentEvent e)
+            {
+                updateName();
+            }
+
+            public void removeUpdate(DocumentEvent e)
+            {
+                updateName();
+            }
+
+            public void insertUpdate(DocumentEvent e)
+            {
+                updateName();
+            }
+
+            public void updateName()
+            {
+                my_rule.setName(ruleNameTXT.getText());
+            }
+        });
+
+    }
+
+    public int getID()
+    {
+        return my_rule.getID();
+    }
+
+    public void setLabelColor(String color)
+    {
+        int colorIndex = Arrays.asList(Highlighter.arrayColorStrings).indexOf(color);
+        nameLabel.setForeground(Highlighter.arrayColorObjs[colorIndex]);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jColorChooser1 = new javax.swing.JColorChooser();
+        jDialog1 = new javax.swing.JDialog();
+        internalJPanel = new javax.swing.JPanel();
+        nameLabel = new javax.swing.JLabel();
+        ruleNameTXT = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        ruleRegexTB = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        sectionCB = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        ruleColorCB = new javax.swing.JComboBox<>();
+        DeleteRuleBTN = new javax.swing.JButton();
+        ruleActive = new javax.swing.JCheckBox();
+        targetCB = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        isRegexCB = new javax.swing.JCheckBox();
+        caseSensitiveCB = new javax.swing.JCheckBox();
+        negativeSearchCB = new javax.swing.JCheckBox();
+        jSeparator1 = new javax.swing.JSeparator();
+        inScopeCB = new javax.swing.JCheckBox();
+        actionCB = new javax.swing.JComboBox<>();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        setMaximumSize(new java.awt.Dimension(32767, 110));
+        setPreferredSize(new java.awt.Dimension(895, 240));
+
+        internalJPanel.setMaximumSize(new java.awt.Dimension(32767, 111));
+        internalJPanel.setRequestFocusEnabled(false);
+
+        nameLabel.setText("Rule Name");
+
+        jLabel3.setText("Search term");
+
+        ruleRegexTB.setActionCommand("null");
+
+        jLabel2.setText("Matches");
+
+        sectionCB.setMinimumSize(new java.awt.Dimension(32, 27));
+        sectionCB.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                sectionCBItemStateChanged(evt);
+            }
+        });
+
+        jLabel4.setText("Highlight color");
+
+        ruleColorCB.setMinimumSize(new java.awt.Dimension(32, 27));
+        ruleColorCB.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ruleColorCBItemStateChanged(evt);
+            }
+        });
+
+        DeleteRuleBTN.setText("Delete rule");
+        DeleteRuleBTN.setMaximumSize(new java.awt.Dimension(137, 29));
+        DeleteRuleBTN.setMinimumSize(new java.awt.Dimension(137, 29));
+        DeleteRuleBTN.setName(""); // NOI18N
+        DeleteRuleBTN.setPreferredSize(new java.awt.Dimension(137, 29));
+        DeleteRuleBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DeleteRuleBTNMouseClicked(evt);
+            }
+        });
+
+        ruleActive.setForeground(new java.awt.Color(255, 0, 0));
+        ruleActive.setText("Check regex and activate");
+        ruleActive.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ruleActiveItemStateChanged(evt);
+            }
+        });
+
+        targetCB.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                targetCBItemStateChanged(evt);
+            }
+        });
+
+        jLabel6.setText("against");
+
+        isRegexCB.setText("Regex");
+        isRegexCB.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                isRegexCBItemStateChanged(evt);
+            }
+        });
+
+        caseSensitiveCB.setText("Case-sensitive");
+
+        negativeSearchCB.setText("Negative search");
+        negativeSearchCB.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                negativeSearchCBItemStateChanged(evt);
+            }
+        });
+
+        inScopeCB.setText("In-scope only");
+        inScopeCB.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                inScopeCBItemStateChanged(evt);
+            }
+        });
+
+        actionCB.setMinimumSize(new java.awt.Dimension(32, 27));
+        actionCB.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                actionCBItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout internalJPanelLayout = new javax.swing.GroupLayout(internalJPanel);
+        internalJPanel.setLayout(internalJPanelLayout);
+        internalJPanelLayout.setHorizontalGroup(
+            internalJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(internalJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(internalJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
+                    .addGroup(internalJPanelLayout.createSequentialGroup()
+                        .addGroup(internalJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(internalJPanelLayout.createSequentialGroup()
+                                .addGroup(internalJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(internalJPanelLayout.createSequentialGroup()
+                                        .addComponent(nameLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ruleNameTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(internalJPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ruleColorCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(internalJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)))
+                            .addComponent(ruleActive))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(internalJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(internalJPanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(inScopeCB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addComponent(caseSensitiveCB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(isRegexCB))
+                            .addComponent(ruleRegexTB)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, internalJPanelLayout.createSequentialGroup()
+                                .addComponent(targetCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)
+                                .addGap(5, 5, 5)
+                                .addComponent(sectionCB, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(internalJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(negativeSearchCB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(DeleteRuleBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                            .addComponent(actionCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        internalJPanelLayout.setVerticalGroup(
+            internalJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(internalJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(internalJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameLabel)
+                    .addComponent(ruleNameTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(ruleRegexTB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(actionCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addGroup(internalJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DeleteRuleBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sectionCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(targetCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(ruleColorCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(internalJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(negativeSearchCB)
+                    .addComponent(isRegexCB)
+                    .addComponent(caseSensitiveCB)
+                    .addComponent(ruleActive)
+                    .addComponent(inScopeCB))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(internalJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(internalJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void DeleteRuleBTNMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_DeleteRuleBTNMouseClicked
+    {//GEN-HEADEREND:event_DeleteRuleBTNMouseClicked
+        gui.removeRule(this);
+    }//GEN-LAST:event_DeleteRuleBTNMouseClicked
+
+    private void ruleColorCBItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_ruleColorCBItemStateChanged
+    {//GEN-HEADEREND:event_ruleColorCBItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+
+            // Really dirty hack to tell between initialization and user-change events
+            // Turns out initialization event source object has zero height \o/
+            // so I can just ignore these events :D
+            // note: I have no idea what I'm doing
+            try
+            {
+                JComboBox mySource = (JComboBox) evt.getSource();
+
+                if (mySource.getHeight() == 0)
+                {
+                    Highlighter.printf("[Color] Ignoring item state change from initialization (height == 0)\n");
+                    return;
+                }
+            } catch (Exception e)
+            {
+                // Just shrugh it off 
+                // This is real high-quality Java code here.
+            }
+
+            String new_color = Highlighter.arrayColorStrings[ruleColorCB.getSelectedIndex()];
+            setLabelColor(new_color);
+
+            if (!ruleColorCB.getSelectedItem().toString().equals("Remove highlight"))
+            {
+                my_rule.setColor(new_color);
+
+            } else
+            {
+                my_rule.setColor("");
+            }
+        }
+    }//GEN-LAST:event_ruleColorCBItemStateChanged
+
+    private void ruleActiveItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_ruleActiveItemStateChanged
+    {//GEN-HEADEREND:event_ruleActiveItemStateChanged
+        if (ruleActive.isSelected())
+        {
+            // if we are matching against substrings, there's no need to check for valid regex
+            if (my_rule.getMatchType().equals("Substring") || my_rule.checkRegex())
+            {
+                ruleActive.setText("Active");
+                ruleActive.setForeground(new Color(0, 153, 0));
+                my_rule.enable();
+            } else
+            {
+                ruleActive.setSelected(false);
+                JOptionPane.showMessageDialog(null,
+                        "Invalid regular expression", "Regex Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else
+        {
+            ruleActive.setText("Check regex and activate");
+            ruleActive.setForeground(Color.RED);
+            my_rule.disable();
+        }
+    }//GEN-LAST:event_ruleActiveItemStateChanged
+
+    private void targetCBItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_targetCBItemStateChanged
+    {//GEN-HEADEREND:event_targetCBItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            try
+            {
+                JComboBox mySource = (JComboBox) evt.getSource();
+
+                if (mySource.getHeight() == 0)
+                {
+                    Highlighter.printf("[Target] Ignoring item state change from initialization (height == 0)\n");
+                    return;
+                }
+            } catch (Exception e)
+            {
+            }
+
+            // Change internal rule target
+            my_rule.setTarget(targetCB.getSelectedItem().toString());
+
+            // Add some sanity checks here to make sense of Burp extender API methods
+            switch (targetCB.getSelectedItem().toString())
+            {
+                case "Request":
+                    sectionCB.removeAllItems();
+                    sectionCB.addItem("Method");
+                    sectionCB.addItem("URL");
+                    sectionCB.addItem("Header");
+                    sectionCB.addItem("Body");
+                    sectionCB.addItem("Any");
+                    break;
+
+                case "Response":
+                    sectionCB.removeAllItems();
+                    sectionCB.addItem("Cookies");
+                    sectionCB.addItem("Header");
+                    sectionCB.addItem("Body");
+                    sectionCB.addItem("Mime");
+                    sectionCB.addItem("StatusCode");
+                    sectionCB.addItem("Any");
+                    break;
+
+                case "Both":
+                    sectionCB.removeAllItems();
+                    sectionCB.addItem("Header");
+                    sectionCB.addItem("Body");
+                    sectionCB.addItem("Any");
+                    break;
+            }
+        }
+    }//GEN-LAST:event_targetCBItemStateChanged
+
+    private void sectionCBItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_sectionCBItemStateChanged
+    {//GEN-HEADEREND:event_sectionCBItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            my_rule.setSection(sectionCB.getSelectedItem().toString());
+        }
+    }//GEN-LAST:event_sectionCBItemStateChanged
+
+    private void isRegexCBItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_isRegexCBItemStateChanged
+    {//GEN-HEADEREND:event_isRegexCBItemStateChanged
+        if (isRegexCB.isSelected())
+        {
+            my_rule.setMatchType("Regex");
+        } else
+        {
+            my_rule.setMatchType("Substring");
+        }
+    }//GEN-LAST:event_isRegexCBItemStateChanged
+
+    private void negativeSearchCBItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_negativeSearchCBItemStateChanged
+    {//GEN-HEADEREND:event_negativeSearchCBItemStateChanged
+        if (negativeSearchCB.isSelected())
+        {
+            my_rule.setNegative(true);
+        } else
+        {
+            my_rule.setNegative(false);
+        }
+     }//GEN-LAST:event_negativeSearchCBItemStateChanged
+
+    private void inScopeCBItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_inScopeCBItemStateChanged
+    {//GEN-HEADEREND:event_inScopeCBItemStateChanged
+        if (inScopeCB.isSelected())
+        {
+            my_rule.setInScope(true);
+        } else
+        {
+            my_rule.setInScope(false);
+        }    }//GEN-LAST:event_inScopeCBItemStateChanged
+
+    private void actionCBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_actionCBItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            try
+            {
+                JComboBox mySource = (JComboBox) evt.getSource();
+
+                if (mySource.getHeight() == 0)
+                {
+                    Highlighter.printf("[Action] Ignoring item state change from initialization (height == 0)\n");
+                    return;
+                }
+            } catch (Exception e)
+            {
+                Highlighter.printf("exception: %s", e.toString());
+            }
+            // Change internal rule target
+            my_rule.setAction(actionCB.getSelectedItem().toString());
+        }
+    }//GEN-LAST:event_actionCBItemStateChanged
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DeleteRuleBTN;
+    private javax.swing.JComboBox<String> actionCB;
+    private javax.swing.JCheckBox caseSensitiveCB;
+    private javax.swing.JCheckBox inScopeCB;
+    private javax.swing.JPanel internalJPanel;
+    private javax.swing.JCheckBox isRegexCB;
+    private javax.swing.JColorChooser jColorChooser1;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JCheckBox negativeSearchCB;
+    private javax.swing.JCheckBox ruleActive;
+    public javax.swing.JComboBox<String> ruleColorCB;
+    public javax.swing.JTextField ruleNameTXT;
+    private javax.swing.JTextField ruleRegexTB;
+    private javax.swing.JComboBox<String> sectionCB;
+    private javax.swing.JComboBox<String> targetCB;
+    // End of variables declaration//GEN-END:variables
+}
