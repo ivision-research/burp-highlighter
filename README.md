@@ -30,7 +30,7 @@ If the match **result** is `true`, the selected action will be performed on the 
 
 ## How to install
 
-You can either build it from source or download the pre-built jar file (see [Releases]).
+You can either build it from source or download the pre-built jar file (see [Releases](https://github.com/CarveSystems/burp-highlighter/releases)).
 
 To install it, click "Add" on the Burp Extender tab, select "Java" as the extension type, then click "Select file..." and browse to the jar file location.
 
