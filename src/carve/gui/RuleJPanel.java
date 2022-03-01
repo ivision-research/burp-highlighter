@@ -175,7 +175,8 @@ public class RuleJPanel extends javax.swing.JPanel
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jColorChooser1 = new javax.swing.JColorChooser();
         jDialog1 = new javax.swing.JDialog();
@@ -225,8 +226,10 @@ public class RuleJPanel extends javax.swing.JPanel
         jLabel2.setText("Matches");
 
         sectionCB.setMinimumSize(new java.awt.Dimension(32, 27));
-        sectionCB.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        sectionCB.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
                 sectionCBItemStateChanged(evt);
             }
         });
@@ -234,8 +237,10 @@ public class RuleJPanel extends javax.swing.JPanel
         jLabel4.setText("Highlight color");
 
         ruleColorCB.setMinimumSize(new java.awt.Dimension(32, 27));
-        ruleColorCB.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        ruleColorCB.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
                 ruleColorCBItemStateChanged(evt);
             }
         });
@@ -245,22 +250,35 @@ public class RuleJPanel extends javax.swing.JPanel
         DeleteRuleBTN.setMinimumSize(new java.awt.Dimension(137, 29));
         DeleteRuleBTN.setName(""); // NOI18N
         DeleteRuleBTN.setPreferredSize(new java.awt.Dimension(137, 29));
-        DeleteRuleBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        DeleteRuleBTN.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 DeleteRuleBTNMouseClicked(evt);
             }
         });
 
         ruleActive.setForeground(new java.awt.Color(255, 0, 0));
         ruleActive.setText("Check regex and activate");
-        ruleActive.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        ruleActive.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
                 ruleActiveItemStateChanged(evt);
             }
         });
+        ruleActive.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                ruleActiveActionPerformed(evt);
+            }
+        });
 
-        targetCB.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        targetCB.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
                 targetCBItemStateChanged(evt);
             }
         });
@@ -268,8 +286,10 @@ public class RuleJPanel extends javax.swing.JPanel
         jLabel6.setText("against");
 
         isRegexCB.setText("Regex");
-        isRegexCB.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        isRegexCB.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
                 isRegexCBItemStateChanged(evt);
             }
         });
@@ -277,22 +297,28 @@ public class RuleJPanel extends javax.swing.JPanel
         caseSensitiveCB.setText("Case-sensitive");
 
         negativeSearchCB.setText("Negative search");
-        negativeSearchCB.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        negativeSearchCB.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
                 negativeSearchCBItemStateChanged(evt);
             }
         });
 
         inScopeCB.setText("In-scope only");
-        inScopeCB.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        inScopeCB.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
                 inScopeCBItemStateChanged(evt);
             }
         });
 
         actionCB.setMinimumSize(new java.awt.Dimension(32, 27));
-        actionCB.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        actionCB.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
                 actionCBItemStateChanged(evt);
             }
         });
@@ -327,7 +353,7 @@ public class RuleJPanel extends javax.swing.JPanel
                             .addGroup(internalJPanelLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(inScopeCB)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(caseSensitiveCB)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(isRegexCB))
@@ -569,6 +595,11 @@ public class RuleJPanel extends javax.swing.JPanel
             my_rule.setAction(actionCB.getSelectedItem().toString());
         }
     }//GEN-LAST:event_actionCBItemStateChanged
+
+    private void ruleActiveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ruleActiveActionPerformed
+    {//GEN-HEADEREND:event_ruleActiveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ruleActiveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

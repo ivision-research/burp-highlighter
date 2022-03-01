@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -24,7 +25,7 @@ public class HighlightGUI extends javax.swing.JPanel
      */
     public List<carve.gui.RuleJPanel> my_rule_panels = new ArrayList<carve.gui.RuleJPanel>();
     private JFileChooser fc = new JFileChooser();
-
+    
     public HighlightGUI()
     {
         initComponents();
@@ -102,7 +103,8 @@ public class HighlightGUI extends javax.swing.JPanel
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -115,8 +117,9 @@ public class HighlightGUI extends javax.swing.JPanel
         debugBTN = new javax.swing.JButton();
         exportRulesBTN = new javax.swing.JButton();
         importRulesBTN = new javax.swing.JButton();
-        currentRulesPanel = new carve.gui.currentRulesPanel();
         csLogo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        currentRulesPanel = new carve.gui.currentRulesPanel();
         optionsPanel = new javax.swing.JPanel();
         debugModeCB = new javax.swing.JCheckBox();
         jSeparator1 = new javax.swing.JSeparator();
@@ -132,12 +135,18 @@ public class HighlightGUI extends javax.swing.JPanel
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
+        jTabbedPane1.setAutoscrolls(true);
+
+        rulesSCPanel.setAutoscrolls(true);
+
         addRuleBTN.setText("Add rule");
         addRuleBTN.setMaximumSize(new java.awt.Dimension(126, 29));
         addRuleBTN.setMinimumSize(new java.awt.Dimension(126, 29));
         addRuleBTN.setPreferredSize(new java.awt.Dimension(126, 29));
-        addRuleBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        addRuleBTN.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 addRuleBTNMouseClicked(evt);
             }
         });
@@ -147,13 +156,17 @@ public class HighlightGUI extends javax.swing.JPanel
         clearRulesBTN.setMaximumSize(new java.awt.Dimension(126, 29));
         clearRulesBTN.setMinimumSize(new java.awt.Dimension(126, 29));
         clearRulesBTN.setPreferredSize(new java.awt.Dimension(126, 29));
-        clearRulesBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        clearRulesBTN.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 clearRulesBTNMouseClicked(evt);
             }
         });
-        clearRulesBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        clearRulesBTN.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 clearRulesBTNActionPerformed(evt);
             }
         });
@@ -161,8 +174,10 @@ public class HighlightGUI extends javax.swing.JPanel
 
         scanBTN.setText("Scan history");
         scanBTN.setPreferredSize(new java.awt.Dimension(126, 29));
-        scanBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        scanBTN.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 scanBTNMouseClicked(evt);
             }
         });
@@ -173,13 +188,17 @@ public class HighlightGUI extends javax.swing.JPanel
         debugBTN.setMaximumSize(new java.awt.Dimension(126, 29));
         debugBTN.setMinimumSize(new java.awt.Dimension(126, 29));
         debugBTN.setPreferredSize(new java.awt.Dimension(126, 29));
-        debugBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        debugBTN.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 debugBTNMouseClicked(evt);
             }
         });
-        debugBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        debugBTN.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 debugBTNActionPerformed(evt);
             }
         });
@@ -189,8 +208,10 @@ public class HighlightGUI extends javax.swing.JPanel
         exportRulesBTN.setMaximumSize(new java.awt.Dimension(126, 29));
         exportRulesBTN.setMinimumSize(new java.awt.Dimension(126, 29));
         exportRulesBTN.setPreferredSize(new java.awt.Dimension(126, 29));
-        exportRulesBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        exportRulesBTN.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 exportRulesBTNMouseClicked(evt);
             }
         });
@@ -200,8 +221,10 @@ public class HighlightGUI extends javax.swing.JPanel
         importRulesBTN.setMaximumSize(new java.awt.Dimension(126, 29));
         importRulesBTN.setMinimumSize(new java.awt.Dimension(126, 29));
         importRulesBTN.setPreferredSize(new java.awt.Dimension(126, 29));
-        importRulesBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        importRulesBTN.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 importRulesBTNMouseClicked(evt);
             }
         });
@@ -223,9 +246,10 @@ public class HighlightGUI extends javax.swing.JPanel
                 .addGap(0, 23, Short.MAX_VALUE))
         );
 
-        currentRulesPanel.setLayout(new javax.swing.BoxLayout(currentRulesPanel, javax.swing.BoxLayout.Y_AXIS));
-
         csLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/carve_logo.png"))); // NOI18N
+
+        currentRulesPanel.setLayout(new javax.swing.BoxLayout(currentRulesPanel, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(currentRulesPanel);
 
         javax.swing.GroupLayout rulesSCPanelLayout = new javax.swing.GroupLayout(rulesSCPanel);
         rulesSCPanel.setLayout(rulesSCPanelLayout);
@@ -236,23 +260,28 @@ public class HighlightGUI extends javax.swing.JPanel
                     .addComponent(outerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(csLogo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(currentRulesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 891, Short.MAX_VALUE)
                 .addContainerGap())
         );
         rulesSCPanelLayout.setVerticalGroup(
             rulesSCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rulesSCPanelLayout.createSequentialGroup()
                 .addComponent(outerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(csLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(currentRulesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(rulesSCPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Rules", rulesSCPanel);
 
         debugModeCB.setText("Enable debug mode");
-        debugModeCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        debugModeCB.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 debugModeCBActionPerformed(evt);
             }
         });
@@ -262,28 +291,36 @@ public class HighlightGUI extends javax.swing.JPanel
         jLabel6.setText("Rule persistence directory path");
 
         persistencePathTB.setEnabled(false);
-        persistencePathTB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        persistencePathTB.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 persistencePathTBActionPerformed(evt);
             }
         });
 
         persistenceCB.setText("Rule persistence enabled");
         persistenceCB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        persistenceCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        persistenceCB.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 persistenceCBActionPerformed(evt);
             }
         });
 
         browseDirBTN.setText("Browse");
-        browseDirBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        browseDirBTN.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 browseDirBTNMouseClicked(evt);
             }
         });
-        browseDirBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        browseDirBTN.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 browseDirBTNActionPerformed(evt);
             }
         });
@@ -307,7 +344,7 @@ public class HighlightGUI extends javax.swing.JPanel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(browseDirBTN))
                             .addComponent(debugModeCB))
-                        .addGap(0, 290, Short.MAX_VALUE)))
+                        .addGap(0, 478, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         optionsPanelLayout.setVerticalGroup(
@@ -326,7 +363,7 @@ public class HighlightGUI extends javax.swing.JPanel
                     .addComponent(browseDirBTN))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(debugModeCB)
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Options", optionsPanel);
@@ -499,6 +536,7 @@ public class HighlightGUI extends javax.swing.JPanel
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel optionsPanel;

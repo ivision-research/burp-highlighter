@@ -1,4 +1,5 @@
 build/
+dist/
 nbproject/private/
 private.xml 
 private.properties
